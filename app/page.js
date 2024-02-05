@@ -15,6 +15,8 @@ function WordForm({ form }) {
         {form.person !== undefined && <p><strong>Person:</strong> {form.person}</p>}
         {form.plural !== undefined && <p><strong>Plural:</strong> {form.plural ? "Yes" : "No"}</p>}
         {form.gender !== undefined && <p><strong>Gender:</strong> {format(form.gender)}</p>}
+        {form.degree !== undefined && <p><strong>Degree:</strong> {format(form.degree)}</p>}
+        {form.type !== undefined && <p><strong>Type:</strong> {format(form.type)}</p>}
         <p><strong>English equivalent:</strong> {format(form.english_equivalent)}</p>
     </div>;
 }

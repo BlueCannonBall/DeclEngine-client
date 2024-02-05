@@ -8,7 +8,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-    title: "Declengine",
+    title: "DeclEngine",
     description: "Provides information about Latin words.",
 };
 
