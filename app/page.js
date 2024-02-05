@@ -2,7 +2,11 @@
 import { useRef, useState } from "react";
 
 function format(str) {
-    return (str[0].toUpperCase() + str.slice(-str.length + 1)).replaceAll('_', ' ');
+    if (str.length === 1) {
+        return str[0].toUpperCase();
+    } else {
+        return (str[0].toUpperCase() + str.slice(-str.length + 1)).replaceAll('_', ' ');
+    }
 }
 
 function WordForm({ form }) {
@@ -60,7 +64,7 @@ export default function Main() {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        const resp = await fetch("https://8000-bluecannonb-declenginec-v4o7qwgvuqe.ws-us108.gitpod.io/word_info?" + new URLSearchParams({
+        const resp = await fetch("http://192.168.1.248:8000/word_info?" + new URLSearchParams({
             word: word.current,
         }));
         if (resp.status != 200) {
