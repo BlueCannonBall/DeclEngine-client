@@ -5,53 +5,37 @@ function format(str) {
     return (str[0].toUpperCase() + str.slice(-str.length + 1)).replaceAll('_', ' ');
 }
 
-// From https://stackoverflow.com/a/52171480
-function cyrb53(str, seed = 0) {
-    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
-    for (let i = 0, ch; i < str.length; i++) {
-        ch = str.charCodeAt(i);
-        h1 = Math.imul(h1 ^ ch, 2654435761);
-        h2 = Math.imul(h2 ^ ch, 1597334677);
-    }
-    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
-    h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
-    h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-
-    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
-}
-
 function WordForm({ form }) {
     const bgColors = [
-        "bg-red-200",
-        "bg-orange-200",
-        "bg-amber-200",
-        "bg-green-200",
-        "bg-emerald-200",
-        "bg-teal-200",
-        "bg-cyan-200",
-        "bg-sky-200",
         "bg-blue-200",
-        "bg-violet-200",
+        "bg-red-200",
+        "bg-green-200",
         "bg-purple-200",
+        "bg-cyan-200",
+        "bg-orange-200",
+        "bg-emerald-200",
+        "bg-amber-200",
+        "bg-sky-200",
+        "bg-violet-200",
+        "bg-teal-200",
     ];
 
     const outlineColors = [
-        "outline-red-300",
-        "outline-orange-300",
-        "outline-amber-300",
-        "outline-green-300",
-        "outline-emerald-300",
-        "outline-teal-300",
-        "outline-cyan-300",
-        "outline-sky-300",
         "outline-blue-300",
-        "outline-violet-300",
+        "outline-red-300",
+        "outline-green-300",
         "outline-purple-300",
+        "outline-cyan-300",
+        "outline-orange-300",
+        "outline-emerald-300",
+        "outline-amber-300",
+        "outline-sky-300",
+        "outline-violet-300",
+        "outline-teal-300",
     ];
 
-    const bgColor = bgColors[cyrb53(form.english_base) % bgColors.length];
-    const outlineColor = outlineColors[cyrb53(form.english_base) % outlineColors.length];
+    const bgColor = bgColors[form.baseID % bgColors.length];
+    const outlineColor = outlineColors[form.baseID % outlineColors.length];
 
     return <div className={`p-5 ${bgColor} outline outline-2 ${outlineColor} rounded-2xl`}>
         <p><strong>English base:</strong> {format(form.english_base)}</p>
@@ -86,12 +70,13 @@ export default function Main() {
         const variants = await resp.json();
 
         setForms([]);
-        for (const variant of variants) {
-            for (const form of variant.forms) {
-                form.english_base = variant.english_base;
+        for (const i in variants) {
+            for (const form of variants[i].forms) {
+                form.baseID = i;
+                form.english_base = variants[i].english_base;
             }
             setForms(forms => {
-                return [...forms, ...variant.forms];
+                return [...forms, ...variants[i].forms];
             });
         }
     };
