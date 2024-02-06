@@ -11,28 +11,24 @@ function format(str) {
 
 function WordForm({ form }) {
     const bgColors = [
-        "bg-sky-200",
+        "bg-blue-200",
         "bg-red-200",
         "bg-green-200",
         "bg-purple-200",
         "bg-amber-200",
-        "bg-cyan-200",
-        "bg-orange-200",
-        "bg-emerald-200",
         "bg-violet-200",
-        "bg-teal-200",
+        "bg-sky-200",
+        "bg-orange-200",
     ];
     const outlineColors = [
-        "outline-sky-300",
+        "outline-blue-300",
         "outline-red-300",
         "outline-green-300",
         "outline-purple-300",
         "outline-amber-300",
-        "outline-cyan-300",
-        "outline-orange-300",
-        "outline-emerald-300",
         "outline-violet-300",
-        "outline-teal-300",
+        "outline-sky-300",
+        "outline-orange-300",
     ];
 
     const bgColor = bgColors[form.baseID % bgColors.length];
