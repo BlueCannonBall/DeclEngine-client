@@ -90,7 +90,7 @@ export default function Main() {
                 </svg>
             </button>
         </form>
-        {forms.length ? <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {forms.length ? <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
             {forms.map((form, i) => {
                 return <WordForm form={form} key={i} />;
             })}
