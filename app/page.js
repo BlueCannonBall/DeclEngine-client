@@ -16,7 +16,6 @@ function WordForm({ form }) {
         "bg-green-200",
         "bg-purple-200",
         "bg-amber-200",
-        "bg-violet-200",
         "bg-sky-200",
         "bg-orange-200",
     ];
@@ -26,7 +25,6 @@ function WordForm({ form }) {
         "outline-green-300",
         "outline-purple-300",
         "outline-amber-300",
-        "outline-violet-300",
         "outline-sky-300",
         "outline-orange-300",
     ];
