@@ -33,6 +33,7 @@ function WordForm({ form }) {
     const outlineColor = outlineColors[form.baseID % outlineColors.length];
     return <div className={`p-4 ${bgColor} outline outline-1 ${outlineColor} rounded-2xl`}>
         <p><strong>English base:</strong> {format(form.english_base)}</p>
+        <p><strong>Full definition:</strong> {format(form.definition)}</p>
         <p><strong>Part of speech:</strong> {format(form.part_of_speech)}</p>
         {form.casus !== undefined && <p><strong>Case:</strong> {format(form.casus)}</p>}
         {form.tense !== undefined && <p><strong>Tense:</strong> {format(form.tense)}</p>}
