@@ -55,7 +55,7 @@ export default function Main() {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        const resp = await fetch("http://192.168.1.248:8000/word_info?" + new URLSearchParams({
+        const resp = await fetch("http://localhost:8000/word_info?" + new URLSearchParams({
             word: word.current,
         }));
         if (resp.status != 200) {
@@ -69,6 +69,7 @@ export default function Main() {
             for (const form of variants[i].forms) {
                 form.baseID = i;
                 form.english_base = variants[i].english_base;
+                form.definition = variants[i].definition;
             }
             setForms(forms => {
                 return [...forms, ...variants[i].forms];
