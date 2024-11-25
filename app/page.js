@@ -32,8 +32,8 @@ function WordForm({ form }) {
     const bgColor = bgColors[form.baseID % bgColors.length];
     const outlineColor = outlineColors[form.baseID % outlineColors.length];
     return <div className={`p-4 ${bgColor} outline outline-1 ${outlineColor} rounded-2xl`}>
-        <p><strong>English base:</strong> {format(form.english_base)}</p>
-        <p><strong>Full definition:</strong> {format(form.definition)}</p>
+        <p><strong>English equivalent:</strong> {format(form.english_equivalent)}</p>
+        <p><strong>Definition:</strong> {format(form.definition)}</p>
         <p><strong>Part of speech:</strong> {format(form.part_of_speech)}</p>
         {form.casus !== undefined && <p><strong>Case:</strong> {format(form.casus)}</p>}
         {form.tense !== undefined && <p><strong>Tense:</strong> {format(form.tense)}</p>}
@@ -44,7 +44,6 @@ function WordForm({ form }) {
         {form.gender !== undefined && <p><strong>Gender:</strong> {format(form.gender)}</p>}
         {form.degree !== undefined && <p><strong>Degree:</strong> {format(form.degree)}</p>}
         {form.type !== undefined && <p><strong>Type:</strong> {format(form.type)}</p>}
-        <p><strong>English equivalent:</strong> {format(form.english_equivalent)}</p>
     </div>;
 }
 
@@ -68,7 +67,6 @@ export default function Main() {
         for (const i in variants) {
             for (const form of variants[i].forms) {
                 form.baseID = i;
-                form.english_base = variants[i].english_base;
                 form.definition = variants[i].definition;
             }
             setForms(forms => {
